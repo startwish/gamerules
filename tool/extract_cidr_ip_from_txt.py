@@ -8,12 +8,13 @@ with open(filename) as fh:
    fstring = fh.readlines()
  
 # declaring the regex pattern for IP addresses
-pattern = re.compile(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\/\d{2})')
- 
+pattern = re.compile(r'(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\d{2})')
+
 # displaying the extracted IP addresses
 for index, line in enumerate(fstring):
-    number=("{}".format( line.strip()))
-    check=(pattern.search(number)[0])
-    f = open("ipextracted.txt", "a")
-    f.write(check+"\n")
-    f.close()
+    result = pattern.findall(line)
+    for each in result:
+        print(each)
+        f = open("ipextracted.txt", "a")
+        f.write(each+"\n")
+        f.close()
